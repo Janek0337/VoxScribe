@@ -1,0 +1,28 @@
+[project]
+name = "voxscribe"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Janek0337", email = "artyleriapolska@gmail.com" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "datacollective>=0.6.4",
+    "dotenv>=0.9.9",
+    "ffmpeg-python>=0.2.0",
+    "ipython>=9.17.1",
+    "matplotlib>=3.11.2",
+    "sounddevice>=0.5.6",
+    "soundfile>=0.14.0",
+    "torch>=2.14.1",
+    "torchaudio>=2.11.0",
+    "torchcodec>=0.17.0",
+    "tqdm>=4.70.1",
+]
+
+[project.scripts]
+voxscribe = "voxscribe:main"
+
+[tool.uv]
+package = false
