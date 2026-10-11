@@ -7,6 +7,12 @@ import pandas as pd
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from tqdm import tqdm
 
+def normalize_sentence(sentence: str):
+    small = sentence.lower()
+    good = "".join(symbol for symbol in small if symbol.isalpha() or symbol.isspace())
+    return good
+
+
 def convert_audio(path_from, path_to):
     path_from_str = str(path_from)
     path_to_str = str(path_to)
@@ -62,6 +68,10 @@ def download_all_records():
     clip_times = clip_times.rename(columns={'clip': 'path'})
 
     records = pd.merge(sentences, clip_times, on='path')
+    records['path'] = records['path'].apply(lambda x: x.replace('.mp3', '.wav'))
+    records['sentence'] = records['sentence'].apply(normalize_sentence)
+
+    records.to_csv(DATA_DIR / 'audio_data.csv', index=False)
 
     # conversion to standard properties
     clips_dir = unpacked_root / 'clips'

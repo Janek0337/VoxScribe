@@ -6,19 +6,21 @@ readme = "README.md"
 authors = [
     { name = "Janek0337", email = "artyleriapolska@gmail.com" }
 ]
-requires-python = ">=3.14"
+requires-python = "==3.12.*"
 dependencies = [
     "datacollective>=0.6.4",
-    "dotenv>=0.9.9",
     "ffmpeg-python>=0.2.0",
-    "ipython>=9.17.1",
     "matplotlib>=3.11.2",
-    "sounddevice>=0.5.6",
-    "soundfile>=0.14.0",
-    "torch>=2.14.1",
-    "torchaudio>=2.11.0",
-    "torchcodec>=0.17.0",
+    "torch==2.4.1",
+    "torchaudio==2.4.1",
+    "torchcodec",
+    "torch-directml",
     "tqdm>=4.70.1",
+    "soundfile>=0.14.0",
+    "sounddevice>=0.5.6",
+    "python-dotenv>=1.2.4",
+    "ipython>=9.17.1",
+    "seaborn>=0.13.2",
 ]
 
 [project.scripts]
@@ -26,3 +28,12 @@ voxscribe = "voxscribe:main"
 
 [tool.uv]
 package = false
+
+[tool.uv.sources]
+torch = { index = "pytorch-cpu" }
+torchaudio = { index = "pytorch-cpu" }
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
